@@ -2,6 +2,7 @@ from fastapi import APIRouter
 from fastapi.responses import RedirectResponse
 from ..services import google_auth
 from ..core.config import settings
+from ..core.security import store_tokens
 
 router = APIRouter()
 
@@ -20,10 +21,14 @@ def auth_callback(code: str, state: str):
     Exchanges the authorization code for an access token.
     """
     credentials = google_auth.get_tokens_from_code(code, state)
-    # For now, just print the credentials. In a real app, you would
-    # create a user session, store tokens securely, and redirect to the dashboard.
     print("Received credentials:", credentials)
     
-    # Construct the frontend dashboard URL from the redirect URI setting
-    frontend_dashboard_url = settings.GOOGLE_REDIRECT_URI.replace("/auth/callback", "/dashboard")
+    # Store credentials securely (using user's email as ID for now)
+    # In a real app, you'd use a proper user ID system
+    user_id = "current_user"  # For development - in production use actual user ID
+    store_tokens(user_id, credentials)
+    print(f"Tokens stored for user: {user_id}")
+    
+    # Redirect to frontend dashboard
+    frontend_dashboard_url = f"{settings.FRONTEND_URL}/dashboard"
     return RedirectResponse(url=frontend_dashboard_url) 
