@@ -1,2 +1,96 @@
 @import "tailwindcss";
 
+/* Email content styling */
+.email-content-container {
+  background: white;
+  border-radius: 8px;
+  overflow: visible;
+  width: 100%;
+}
+
+.email-html-content {
+  /* Reset any inherited styles */
+  line-height: 1.5;
+  color: #1f2937;
+  
+  /* Contain email styles to prevent leaking */
+  overflow: hidden;
+  word-wrap: break-word;
+  
+  /* Ensure images are responsive */
+  img {
+    max-width: 100% !important;
+    height: auto !important;
+    display: block;
+    margin: 0 auto;
+  }
+  
+  /* Style tables properly */
+  table {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-collapse: collapse;
+  }
+  
+  /* Ensure buttons and links work */
+  a {
+    color: #2563eb !important;
+    text-decoration: underline;
+    cursor: pointer;
+  }
+  
+  a:hover {
+    color: #1d4ed8 !important;
+  }
+  
+  /* Button styling */
+  button, 
+  input[type="button"],
+  input[type="submit"],
+  .button,
+  a[role="button"] {
+    padding: 8px 16px;
+    background-color: #2563eb;
+    color: white !important;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none !important;
+    display: inline-block;
+    margin: 4px;
+  }
+  
+  button:hover,
+  input[type="button"]:hover,
+  input[type="submit"]:hover,
+  .button:hover,
+  a[role="button"]:hover {
+    background-color: #1d4ed8 !important;
+  }
+  
+  /* Text formatting */
+  h1, h2, h3, h4, h5, h6 {
+    margin: 16px 0 8px 0;
+    font-weight: bold;
+  }
+  
+  h1 { font-size: 2em; }
+  h2 { font-size: 1.5em; }
+  h3 { font-size: 1.25em; }
+  
+  p {
+    margin: 8px 0;
+  }
+  
+  /* Handle width constraints */
+  * {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  /* Prevent horizontal overflow */
+  > * {
+    max-width: 100% !important;
+  }
+}
+
